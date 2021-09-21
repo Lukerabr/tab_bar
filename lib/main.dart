@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tab_bar/SegundaPagina.dart';
+import 'package:tab_bar/TerceiraPagina.dart';
+import 'PrimeiraPagina.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -23,9 +26,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
     _tabController = TabController(
         length: 3,
-        vsync: this
+        vsync: this,
+        //inicial Index inicia sempre no que foi setado.
+        //initialIndex: 3
     );
 
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
   }
 
   @override
@@ -54,9 +65,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       body: TabBarView(
         controller: _tabController,
         children: [
-          Text("Primeira Página"),
-          Text("Segunda Página"),
-          Text("Terceira Página")
+          PrimeiraPagina(),
+          SegundaPagina(),
+          TerceiraPagina()
         ],
       ),
     );
